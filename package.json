@@ -1,0 +1,26 @@
+{
+  "name": "wordoftheday-ai",
+  "version": "1.0.0",
+  "description": "A twitter bot that posts a word of the day daily.",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "tsc && node .",
+    "build": "tsc"
+  },
+  "author": "github.com/iMahir",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.6.2",
+    "@types/twit": "^2.2.31",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.5.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-schedule": "^2.1.1",
+    "twitter-api-v2": "^1.15.1"
+  }
+}

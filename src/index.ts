@@ -8,7 +8,14 @@ app.get("/", (req, res) => {
     res.status(200).send("OK");
 });
 
+let lastPostStats = {
+    status: "unknown",
+    time_taken: 0
+}
+
 app.get("/post", async (req, res) => {
+
+    res.status(200).send({ status: "initiated" });
 
     try {
 
@@ -16,16 +23,24 @@ app.get("/post", async (req, res) => {
         const status = await postTweet();
         const afterDate = Date.now();
 
-        if (status) return res.status(200).send({ status: "success", time_taken: afterDate - beforeDate })
-        else return res.status(500).send({ status: "error" });
+        lastPostStats = {
+            status: status ? "success" : "error",
+            time_taken: afterDate - beforeDate
+        }
 
     } catch (error) {
 
-        res.status(500).send({ status: "error" });
+        lastPostStats = {
+            status: "error",
+            time_taken: -1
+        }
         console.log(error);
 
     }
+});
 
+app.get("/post/last", (req, res) => {
+    res.status(lastPostStats.status === "success" ? 200 : 500).send(lastPostStats);
 });
 
 app.listen(PORT, () => {

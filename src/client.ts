@@ -1,14 +1,6 @@
-import { config } from "dotenv";
 import { TwitterApi } from 'twitter-api-v2';
 import { Providers } from "./providers";
-
-config();
-
-function getEnv(varName: string) {
-    const enVar = process.env[varName];
-    if (!enVar) throw new Error(`ENV variable not found: ${varName}`);
-    return enVar;
-}
+import { getEnv } from './helpers';
 
 const client = new TwitterApi({
     appKey: getEnv("API_KEY"),

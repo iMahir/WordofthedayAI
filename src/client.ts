@@ -19,7 +19,7 @@ export const postTweet = async () => {
 
         const imageContext = await Providers.gpt.binjie(`Assume that you are a photographer and an artist. You have to create a description of an image. The image should relate to the word: ${wotd.word}. The word means: ${wotd.meaning}. Make sure you include details of the various things or objects in the scene. Use the following tips while generating the description: 1. Describe the content of your image. 2. Describe the subject. 3. Add relevant details. 4. Describe the form and style. 5. Define the composition.. Don't use very difficult words in the description, keep it simple and easy to understand. Don't use overly complicated or uncommon words in the description. Use more adjectives in the description. Only respond with the description of the image, nothing else. The description should be less than 250 words.`);
 
-        const tweetImage = await Providers.image.easydiffusion(imageContext);
+        const tweetImage = await Providers.image.aitubo(imageContext);
 
         const mediaId = await client.v1.uploadMedia(Buffer.from(tweetImage.image.data, "base64"), { mimeType: "image/jpeg" });
 

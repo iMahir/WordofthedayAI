@@ -10,17 +10,24 @@
   "author": "github.com/iMahir",
   "license": "ISC",
   "devDependencies": {
+    "@gradio/client": "^0.8.2",
     "@types/express": "^4.17.17",
-    "@types/node": "^20.6.2",
+    "@types/node": "^20.9.0",
     "@types/twit": "^2.2.31",
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@types/ws": "^8.5.9",
+    "@zeldafan0225/ai_horde": "^5.0.8",
     "axios": "^1.5.0",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
+    "eventsource": "^2.0.2",
     "express": "^4.18.2",
+    "ifw": "^0.0.2",
     "node-schedule": "^2.1.1",
-    "twitter-api-v2": "^1.15.1"
+    "semiver": "^1.1.0",
+    "twitter-api-v2": "^1.15.1",
+    "ws": "^8.14.2"
   }
 }

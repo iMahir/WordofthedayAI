@@ -1,6 +1,5 @@
 import { Binjie } from "./gpt/binjie";
-import { Easydiffusion } from "./image/easydiffusion";
-import { Sdxl } from "./image/sdxl";
+import { Aitubo } from "./image/aitubo";
 import { Wordsmith } from "./wotd/wordsmith";
 
 export const Providers = {
@@ -11,7 +10,6 @@ export const Providers = {
         binjie: Binjie
     },
     image: {
-        sdxl: Sdxl,
-        easydiffusion: Easydiffusion
+        aitubo: Aitubo
     }
 }

@@ -7,6 +7,13 @@ const apiKey = getEnv("AITUBO_API_KEY");
 
 export const Aitubo = async (prompt: string) => {
 
+    await axios.post(`${baseURL}/user/charge`, {
+        type: "checkin"
+    }, {
+        headers: {
+            "Authorization": `Bearer ${apiKey}`
+        }
+    });
 
     const job = await axios.post(`${baseURL}/job/create`, {
         width: 1536,
@@ -64,7 +71,7 @@ export const Aitubo = async (prompt: string) => {
     const upscaleResult = await axios.get(`${baseURL}/job/get?id=${upscale.data.data.id}`);
     if (upscaleResult.data.code !== 0) throw new Error("Error getting upscale result");
 
-    const imageBase64 = await axios.get(`${upscaleResult.data.data.result.data.domain}/${upscaleResult.data.data.result.data.images[0]}` , {
+    const imageBase64 = await axios.get(`${upscaleResult.data.data.result.data.domain}/${upscaleResult.data.data.result.data.images[0]}`, {
         responseType: "arraybuffer"
     }).then((response) => {
         return Buffer.from(response.data, "binary").toString("base64");

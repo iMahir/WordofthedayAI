@@ -1,6 +1,9 @@
-import { TwitterApi } from 'twitter-api-v2';
+import { TweetV2PostTweetResult, TwitterApi } from 'twitter-api-v2';
 import { Providers } from "./providers";
 import { getEnv } from './helpers';
+import axios from 'axios';
+
+const webhooks = getEnv("WEBHOOKS").split(",");
 
 const client = new TwitterApi({
     appKey: getEnv("API_KEY"),
@@ -8,6 +11,28 @@ const client = new TwitterApi({
     accessToken: getEnv("ACCESS_TOKEN"),
     accessSecret: getEnv("ACCESS_SECRET"),
 });
+
+export interface PostTweet {
+    status: boolean;
+    data?: {
+        tweet: TweetV2PostTweetResult;
+        meta: {
+            wotd: {
+                word: string;
+                meaning: string;
+            };
+            tweetContent: string;
+            imageContext: string;
+            tweetImage: {
+                image: {
+                    data: string;
+                    url: string;
+                };
+            };
+            mediaId: string;
+        };
+    };
+}
 
 export const postTweet = async () => {
 
@@ -23,16 +48,53 @@ export const postTweet = async () => {
 
         const mediaId = await client.v1.uploadMedia(Buffer.from(tweetImage.image.data, "base64"), { mimeType: "image/jpeg" });
 
-        await client.v2.tweet({
+        const tweetData = await client.v2.tweet({
             text: tweetContent,
             media: {
                 media_ids: [mediaId]
             }
         });
 
-        return true;
+        return {
+            status: true, data: {
+                tweet: tweetData,
+                meta: {
+                    wotd,
+                    tweetContent,
+                    imageContext,
+                    tweetImage,
+                    mediaId
+                }
+            }
+        };
     } catch (error) {
         console.log(error);
-        return false;
+        return { status: false };
     }
+}
+
+export const postDiscord = async (tweet: PostTweet) => {
+    if (!tweet.data) return;
+
+    const payload = {
+        content: null,
+        embeds: [
+            {
+                description: tweet.data.meta.tweetContent,
+                color: 1447446,
+                author: {
+                    name: "WordofthedayAI",
+                    icon_url: "https://pbs.twimg.com/profile_images/1705203765585002496/Ng2ZBnh8.jpg"
+                },
+                image: {
+                    url: tweet.data.meta.tweetImage.image.url
+                }
+            }
+        ],
+        attachments: []
+    }
+
+    webhooks.forEach(async (webhook) => {
+        axios.post(webhook, payload).catch(console.log);
+    });
 }

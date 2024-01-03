@@ -20,11 +20,11 @@ app.get("/post", async (req, res) => {
     try {
 
         const beforeDate = Date.now();
-        const status = await postTweet();
+        const tweet = await postTweet();
         const afterDate = Date.now();
 
         lastPostStats = {
-            status: status ? "success" : "error",
+            status: tweet.status ? "success" : "error",
             time_taken: afterDate - beforeDate
         }
 

@@ -30,7 +30,7 @@ jobs:
       run: npm install  # Modify this if you have specific dependencies
 
     - name: Build TypeScript code
-      run: npm run build  # Replace this with your build command
+      run: npm run build && npm run post  # Replace this with your build command
 
-    - name: Run TypeScript code
-      run: npm run post  # Replace this with your start command
+    # - name: Run TypeScript code
+    #   run: npm run post  # Replace this with your start command

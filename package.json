@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "scripts": {
     "test": "tsc && node .",
-    "build": "tsc"
+    "build": "tsc",
+    "post": "node build/post.js"
   },
   "author": "github.com/iMahir",
   "license": "ISC",

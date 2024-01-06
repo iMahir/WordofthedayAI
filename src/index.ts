@@ -1,5 +1,5 @@
 import express from "express";
-import { postTweet } from "./client";
+import { postDiscord, postTweet } from "./client";
 
 const app = express();
 const PORT = process.env.PORT ?? 5000;
@@ -21,6 +21,7 @@ app.get("/post", async (req, res) => {
 
         const beforeDate = Date.now();
         const tweet = await postTweet();
+        await postDiscord(tweet);
         const afterDate = Date.now();
 
         lastPostStats = {

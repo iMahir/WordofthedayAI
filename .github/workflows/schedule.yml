@@ -1,8 +1,9 @@
 name: Auto post
 
 on:
-  schedule:
-    - cron: '30 22 * * *'  # Schedule: every day at 4 am IST
+ workflow_dispatch
+ # schedule:
+   # - cron: '30 22 * * *'  # Schedule: every day at 4 am IST
 
 jobs:
   run-code:

@@ -16,7 +16,7 @@ export const Binjie = async (prompt: string) => {
         }
     });
 
-    if (response.status !== 200) throw new Error(`${response.config.url} returned ${response.status}`);
+    if (response.status !== 200) throw new Error(`[GPT Provider] ${response.config.url} returned ${response.status}`);
 
     return response.data;
 }

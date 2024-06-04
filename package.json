@@ -1,6 +1,6 @@
 {
   "name": "wordoftheday-ai",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A twitter bot that posts a word of the day daily.",
   "main": "build/index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "@types/ws": "^8.5.9",
     "@zeldafan0225/ai_horde": "^5.0.8",
     "axios": "^1.5.0",
+    "bing-sydney-ai": "^1.0.1",
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.3.1",
     "eventsource": "^2.0.2",

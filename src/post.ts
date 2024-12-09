@@ -1,12 +1,10 @@
-import { postDiscord, postTweet } from "./client";
+import { postTweet } from "./client";
 
 async function post() {
 
     const tweet = await postTweet();
-    if(!tweet.status) throw new Error("Error while posting tweet");
+    if (!tweet.status) throw new Error("Error while posting tweet");
 
-    await postDiscord(tweet);
-    
     return true;
 }
 

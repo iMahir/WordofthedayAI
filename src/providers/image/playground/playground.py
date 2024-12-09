@@ -4,9 +4,9 @@ import asyncio
 
 # Tokens for authentication
 tokens = {
-    'p-b': 'bcgsQCWNkJ78wPatbfW5xQ==', 
-    'p-lat': 'wCQghtlBF0dqWYUJqrb0TEMpakPnuof4pYD79Tee2w==',
-    'formkey': 'b0c02e1dbc6915b10dbd84bdc94eaae12d'
+    'p-b': '', 
+    'p-lat': '',
+    'formkey': ''
 }
 
 # Main asynchronous function

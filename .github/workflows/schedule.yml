@@ -34,6 +34,3 @@ jobs:
 
     - name: Run TypeScript code
       run: npm run post  # Replace this with your start command
-
-    - name: Keep Alive Workflow
-      uses: gautamkrishnar/keepalive-workflow@v2  # Keep alive worflow to make the workflow run without stopping

@@ -7,7 +7,7 @@ export const PollinationsImage = async (prompt: string) => {
     const width = 1920;
     const height = 1080;
 
-    const fetchUrl = `${baseURL}/${encodeURIComponent(prompt)}?nologo=true&model=gptimage&width=${width}&height=${height}&enhance=false`;
+    const fetchUrl = `${baseURL}/${encodeURIComponent(prompt)}?nologo=true&model=flux&width=${width}&height=${height}&enhance=false`;
 
     const response = await axios.get(fetchUrl, {
         responseType: "arraybuffer"
